@@ -6,14 +6,13 @@ sys.path.append('../')
 from loglizer.models import DecisionTree
 from loglizer import dataloader, preprocessing
 from datetime import datetime
-
+import os
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
 
 def test_run(parser, dataset):
-    struct_log = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/HDFS.log_structured.csv'  # The structured log file
-    # struct_log = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/HDFS_100k.log_structured.csv'
-    label_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/HDFS/anomaly_label.csv' # The anomaly label file
-    
-    result_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/DecisionTree_reuslt_v0806.csv'
+    struct_log = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'/HDFS.log_structured.csv')
+    label_file = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'/anomaly_label.csv') # The anomaly label file
+    result_file = os.path.join(Project_path, 'ML_loglizer/detection_result/'+dataset+'/'+parser+'/DecisionTree_reuslt.csv')
 
     (x_train_raw, y_train_raw), (x_test_raw, y_test_raw) = dataloader.load_HDFS(struct_log,
                                                                 label_file=label_file,

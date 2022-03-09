@@ -6,15 +6,21 @@ sys.path.append('../')
 from loglizer.models import LogClustering
 from loglizer import dataloader, preprocessing
 from datetime import datetime
+import os
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
 
 max_dist = 0.3 # the threshold to stop the clustering process
 anomaly_threshold = 0.2 # the threshold for anomaly detection
 
 def test_run(parser, dataset):
-    struct_log = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/HDFS.log_structured_v2.csv'  # The structured log file
-    label_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/HDFS/anomaly_label.csv' # The anomaly label file
+    # struct_log = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/HDFS.log_structured_v2.csv'  # The structured log file
+    # label_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/HDFS/anomaly_label.csv' # The anomaly label file
     
-    result_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/LogCluster_reuslt_v0903.csv'
+    # result_file = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/LogCluster_reuslt_v0903.csv'
+    #     # struct_log = '/Users/fuying/Documents/MyCodeHub/loglizer_fy/data/'+dataset+'/'+parser+'/HDFS.log_structured.csv'  # The structured log file
+    struct_log = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'/HDFS.log_structured.csv')
+    label_file = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'/anomaly_label.csv') # The anomaly label file
+    result_file = os.path.join(Project_path, 'ML_loglizer/detection_result/'+dataset+'/'+parser+'/LogCluster_reuslt.csv')
 
     (x_train_raw, y_train_raw), (x_test_raw, y_test_raw) = dataloader.load_HDFS(struct_log,
                                                                 label_file=label_file,
