@@ -10,11 +10,6 @@ import numpy as np
 import pandas as pd
 import hashlib
 from datetime import datetime
-import mlflow
-from mlflow import log_param, log_metric
-
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
-mlflow.set_experiment("parsing")
 
 class Logcluster:
     def __init__(self, logTemplate='', logIDL=None):
@@ -250,7 +245,7 @@ class LogParser:
             self.printTree(node.childD[child], dep+1)
 
 
-    def parse(self, logName, fold_num):
+    def parse(self, logName):
         print('Parsing file: ' + os.path.join(self.path, logName))
         if not os.path.exists(self.savePath):
             os.makedirs(self.savePath)
@@ -291,9 +286,6 @@ class LogParser:
 
         self.outputResult(logCluL)
         log_parser = 'Drain'
-        log_param('log_data_'+ fold_num,logName)
-        log_param('parser',log_parser)
-        log_param(fold_num + ' parsing time',(datetime.now() - start_time))
         # log_metric('parsing time',format((datetime.now() - start_time)))
         print('Parsing done. [Time taken: {!s}]'.format(datetime.now() - start_time))
 

@@ -13,11 +13,6 @@ from datetime import datetime
 # from log_to_df import *
 # from DictionarySetUp import *
 
-import mlflow
-from mlflow import log_param, log_metric
-
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
-mlflow.set_experiment("parsing")
 
 from .DictionarySetUp import dictionaryBuilder_fy
 from .MatchToken import tokenMatch_fy
@@ -56,6 +51,3 @@ class LogParser:
         doubleDictionaryList, triDictionaryList, allTokenList, log_contents = dictionaryBuilder_fy(self.log_format, log_file_path, self.rex)
         tokenMatch_fy(log_contents, allTokenList, doubleDictionaryList, triDictionaryList,self.doubleThreshold, self.triThreshold, out_path)
         log_parser = 'Logram'
-        log_param('log_data_'+ fold_num,logName)
-        log_param('parser',log_parser)
-        log_param(fold_num + ' parsing time',(datetime.now() - start_time))

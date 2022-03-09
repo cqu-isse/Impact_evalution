@@ -3,8 +3,11 @@ import sys
 sys.path.append('../')
 from logparser import Spell
 
-input_dir  = '/home/fuying/data_hub/HDFS_log/'  # The input directory of log file
-output_dir = 'Spell_result/'  # The output directory of parsing results
+import os
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+
+input_dir = os.path.join(Project_path, "logparser/log_data/HDFS") # The input directory of log file
+output_dir = os.path.join(Project_path, "logparser/parsing_result/HDFS/Spell_result/")  # The output directory of parsing results
 log_file   = 'HDFS.log'  # The input log file name
 log_format = '<Date> <Time> <Pid> <Level> <Component>: <Content>'  # HDFS log format
 tau        = 0.7  # Message type threshold (default: 0.5)

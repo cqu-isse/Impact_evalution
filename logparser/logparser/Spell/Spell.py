@@ -12,11 +12,6 @@ import pandas as pd
 import hashlib
 from datetime import datetime
 import string
-import mlflow
-from mlflow import log_param, log_metric
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
-mlflow.set_experiment("parsing")
-
 
 class LCSObject:
     """ Class object to store a log group with the same template
@@ -275,9 +270,6 @@ class LogParser:
             os.makedirs(self.savePath)
 
         self.outputResult(logCluL)
-        log_param('log_data_'+ fold_num, logname)
-        log_param('parser',log_parser)
-        log_param(fold_num + 'parsing time',(datetime.now() - starttime))
         print('Parsing done. [Time taken: {!s}]'.format(datetime.now() - starttime))
 
     def load_data(self):

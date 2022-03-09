@@ -13,10 +13,6 @@ import os
 import hashlib
 from collections import defaultdict
 from datetime import datetime
-import mlflow
-from mlflow import log_param, log_metric
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
-mlflow.set_experiment("parsing")
 
 class LogParser(object):
     def __init__(self, indir, outdir, log_format, threshold=0.9, predefined_templates=None, rex=[]):
@@ -46,9 +42,6 @@ class LogParser(object):
             words = line.split()
             self.templ_mgr.infer_template(words, idx)
         self.dump_results()
-        log_param('log_data',logname)
-        log_param('parser',log_parser)
-        log_param('parsing time',(datetime.now() - starttime))
         print('Parsing done. [Time taken: {!s}]'.format(datetime.now() - starttime))
 
     def dump_results(self):

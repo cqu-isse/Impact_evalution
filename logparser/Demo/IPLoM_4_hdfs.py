@@ -2,11 +2,12 @@
 
 import sys
 sys.path.append('../')
-print(sys.path)
 from logparser import IPLoM
+import os
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
 
-input_dir    = '/home/fuying/data_hub/HDFS_log/'  # The input directory of log file
-output_dir   = 'IPLoM_result/'  # The output directory of parsing results
+input_dir = os.path.join(Project_path, "logparser/log_data/HDFS") # The input directory of log file
+output_dir = os.path.join(Project_path, "logparser/parsing_result/HDFS/IPLoM_result/")  # The output directory of parsing results
 log_file     = 'HDFS.log'  # The input log file name
 log_format   = '<Date> <Time> <Pid> <Level> <Component>: <Content>'  # HDFS log format
 maxEventLen  = 120  # The maximal token number of log messages (default: 200)

@@ -13,10 +13,6 @@ import re
 import pandas as pd
 import hashlib
 import string
-import mlflow
-from mlflow import log_param, log_metric
-mlflow.set_tracking_uri("http://127.0.0.1:8080")
-mlflow.set_experiment("parsing")
 
 class Partition:
     """ Wrap around the logs and the step number
@@ -95,9 +91,6 @@ class LogParser:
         self.Step4()
         self.getOutput()
         self.WriteEventToFile()
-        # log_param('log_data_'+ fold_num,logname)
-        # log_param('parser',log_parser)
-        # log_param(fold_num + ' parsing time',(datetime.now() - starttime))
         print('Parsing done. [Time taken: {!s}]'.format(datetime.now() - starttime))
 
     def Step1(self):

@@ -11,6 +11,8 @@ import pandas as pd
 from random import sample
 from tqdm import tqdm
 import re
+import os
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
 
 def event_mapping(input_file,log_template_file,output_file):
     input_data = pd.read_csv(input_file, chunksize=10000)
@@ -41,10 +43,9 @@ def event_mapping(input_file,log_template_file,output_file):
 
 
 if __name__ == "__main__":
-    dataset = 'HDFS.log'
+    dataset = 'HDFS_2k.log'
     parser = 'LFA'
-    input_file = '/home/fuying/logparser/demo/'+parser+'_result/'+dataset+'_structured.csv'
-    log_template_file = '/home/fuying/logparser/demo/'+parser+'_result/'+dataset+'_templates.csv'
-    # output_file = '/nas/fuying/Source_code/logdeep_v1/data/BGL/LFA/'+dataset+'_structured_process.csv'
-    output_file = '/home/fuying/logparser/demo/LFA_result/'+dataset+'_structured_process.csv'
+    input_file = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'_result/'+dataset+'_structured.csv') 
+    log_template_file = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'_result/'+dataset+'_templates.csv') 
+    output_file = os.path.join(Project_path, 'logparser/parsing_result/'+dataset+'/'+parser+'_result/'+dataset+'_structured_process.csv')
     event_mapping(input_file,log_template_file,output_file)
