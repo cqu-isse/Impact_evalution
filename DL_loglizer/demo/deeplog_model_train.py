@@ -14,6 +14,8 @@ import argparse
 from logdeep.models.logC_model import *
 from datetime import datetime
 
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+
 # Device configuration
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -29,7 +31,9 @@ dataset = 'HDFS'
 num_class_dic = {'Drain':48,'IPLoM':45,'Spell':37, 'Logram':97, 'LFA':47, 'Lenma':45, 'GroundTruth':29}
 num_classes = num_class_dic[log_parser]
 
-model_dir = '/home/fuying/data_hub/model_hub/deeplog_'+log_parser+'_4_'+ dataset+'_v6/'
+
+model_dir = os.path.join(Project_path, 'DL_loglizer/model_hub/'+dataset+'/'+log_parser+'/')
+# model_dir = '/home/fuying/data_hub/model_hub/deeplog_'+log_parser+'_4_'+ dataset+'_v6/'
 log = 'Log_Adam_batch_size={}_epoch={}'.format(str(batch_size), str(num_epochs))
 
 def generate_for_log_Key(name):
@@ -38,7 +42,8 @@ def generate_for_log_Key(name):
     outputs = []
     dataset = 'HDFS'
     log_parser = 'Logram'
-    with open('/home/fuying/data_hub/'+ dataset + '_log/parsing_by_'+log_parser+'/normal_abnormal_v6/' + name, 'r') as f:
+    file_root_path = os.path.join(Project_path, 'DL_loglizer/log_data/'+dataset+'/'+log_parser+'/normal_abnormal/')
+    with open(file_root_path + name, 'r') as f:
         for line in f.readlines():
             line = tuple(map(int, line.strip().split()))
             if len(line) > window_size:
@@ -90,7 +95,7 @@ def logKey_model_train():
             optimizer.step()
         print('Epoch [{}/{}], train_loss: {:.4f}'.format(epoch + 1, num_epochs, train_loss / total_step))
     torch.save(model.state_dict(), model_dir + log)
-    log_param('model training time', (datetime.now() - starttime))
+    # log_param('model training time', (datetime.now() - starttime))
     print('Finished Training. [Time taken: {!s}]'.format(datetime.now() - starttime))
 
 if __name__ == "__main__":

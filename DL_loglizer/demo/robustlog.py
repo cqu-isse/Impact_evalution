@@ -12,6 +12,8 @@ from logdeep.tools.train import Trainer
 from logdeep.tools.utils import *
 from datetime import datetime
 
+Project_path = os.path.abspath(os.path.join(os.getcwd(), "../.."))
+
 dataset = 'HDFS'
 logparser = 'Logram'
 
@@ -21,7 +23,10 @@ num_templates_dic = {'HDFS_Drain':48,'HDFS_IPLoM':41,'HDFS_Spell':37, 'HDFS_Logr
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 options = dict()
 
-options['data_dir'] = '/nas/fuying/data_hub/'+ dataset + '/train_test_data_4_robust/' + logparser+'_v2'
+# options['data_dir'] = '/nas/fuying/data_hub/'+ dataset + '/train_test_data_4_robust/' + logparser+'_v2'
+
+options['data_dir'] = os.path.join(Project_path, 'DL_loglizer/log_data/'+dataset+'/'+logparser+'/train_test_data_4_robust/')
+
 # options['window_size'] = 10
 # options['window_size'] = 4
 options['device'] = "cuda"
@@ -56,15 +61,14 @@ options['lr'] = 0.001
 options['max_epoch'] = 200
 options['lr_step'] = (160, 180)
 options['lr_decay_ratio'] = 0.01
-log_param('lr',options['lr'])
-log_param('lr_decay_ratio',options['lr_decay_ratio'])
 
 options['resume_path'] = None
 options['model_name'] = "robustlog"
-options['save_dir'] = '/nas/fuying/data_hub/'+logparser+'/model/robustlog'+'_'+logparser+'_v2/'
+
+options['save_dir'] = os.path.join(Project_path, 'DL_loglizer/model_hub/'+dataset+'/'+logparser+'/robustlog/')
 
 # Predict
-options['model_path'] = '/nas/fuying/data_hub/'+logparser+'/model/robustlog'+'_'+logparser+'_v2/robustlog_last.pth'
+options['model_path'] = os.path.join(Project_path, 'DL_loglizer/model_hub/'+dataset+'/'+logparser+'/robustlog/robustlog_last.pth')
 options['num_candidates'] = -1
 
 # seed_everything(seed=23)
