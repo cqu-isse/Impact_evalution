@@ -28,10 +28,7 @@ def event_mapping(input_file,log_template_file,output_file):
         for i in input_data.index:
             count += 1
             event_by_parsing = input_data.loc[i,'EventTemplate']
-            # print(event_by_parsing)
-            # print(logtemp_dict[event_by_parsing])
             input_data.loc[i, 'EventId'] = logtemp_dict[event_by_parsing]
-            # print(input_data.loc[i, 'EventId'] )
             
         #写出结果
         if index != 0:
