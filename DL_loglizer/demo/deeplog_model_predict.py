@@ -30,8 +30,6 @@ dataset = 'HDFS'
 num_classes = num_class_dic[log_parser]
 window_size = 10
 model_dir = os.path.join(Project_path, 'DL_loglizer/model_hub/'+dataset+'/'+log_parser+'/Log_Adam_batch_size=256_epoch=300')
-# model_dir = '/home/fuying/data_hub/model_hub/deeplog_'+log_parser+'_4_'+ dataset+'_v6/Log_Adam_batch_size=256_epoch=300'
-
 def generate(name):
     contents =[]
     dataset = 'HDFS'
