@@ -3,10 +3,11 @@
 3. DL_loglizer: deep learning based anomaly detection
 
 # Setup
-Python >=3.6  
-numpy 
-sklearn
-pytorch
+Python ==3.6  
+numpy ==1.19.5
+sklearn == 0.24.2
+torth == 1.7.1
+scipy == 1.5.2
 #### Dataset
 We use the dataset of Logpai (https://github.com/logpai/loghub)
 
