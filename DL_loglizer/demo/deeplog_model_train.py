@@ -33,7 +33,6 @@ num_classes = num_class_dic[log_parser]
 
 
 model_dir = os.path.join(Project_path, 'DL_loglizer/model_hub/'+dataset+'/'+log_parser+'/')
-# model_dir = '/home/fuying/data_hub/model_hub/deeplog_'+log_parser+'_4_'+ dataset+'_v6/'
 log = 'Log_Adam_batch_size={}_epoch={}'.format(str(batch_size), str(num_epochs))
 
 def generate_for_log_Key(name):

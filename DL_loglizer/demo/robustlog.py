@@ -23,7 +23,6 @@ num_templates_dic = {'HDFS_Drain':48,'HDFS_IPLoM':41,'HDFS_Spell':37, 'HDFS_Logr
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 options = dict()
 
-# options['data_dir'] = '/nas/fuying/data_hub/'+ dataset + '/train_test_data_4_robust/' + logparser+'_v2'
 
 options['data_dir'] = os.path.join(Project_path, 'DL_loglizer/log_data/'+dataset+'/'+logparser+'/train_test_data_4_robust/')
 
